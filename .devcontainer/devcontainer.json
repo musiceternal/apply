@@ -1,0 +1,54 @@
+{
+  "name": "Music Eternal - Apply (Hiring Assessment)",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "laravel.test",
+  "workspaceFolder": "/var/www/html",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bmewburn.vscode-intelephense-client",
+        "PKief.material-icon-theme",
+        "usernamehw.errorlens",
+        "laravel.vscode-laravel"
+      ],
+      "settings": {
+        "php.debug.executablePath": "/usr/bin/php",
+        "php.executablePath": "/usr/bin/php",
+        "workbench.colorTheme": "Default Dark+",
+        "workbench.iconTheme": "material-icon-theme",
+        "editor.formatOnSave": true,
+        "[php]": {
+          "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+        },
+        "[vue]": {
+          "editor.defaultFormatter": "Vue.volar"
+        },
+        "[typescript]": {
+          "editor.defaultFormatter": "Vue.volar"
+        }
+      }
+    }
+  },
+  "remoteUser": "sail",
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "forwardPorts": [80, 5173, 5432, 6379, 7700],
+  "portsAttributes": {
+    "80": {
+      "label": "Laravel App",
+      "onAutoForward": "notify"
+    },
+    "5173": {
+      "label": "Vite Dev Server",
+      "onAutoForward": "silent"
+    },
+    "5432": {
+      "label": "PostgreSQL"
+    },
+    "6379": {
+      "label": "Redis"
+    },
+    "7700": {
+      "label": "Meilisearch"
+    }
+  }
+}
