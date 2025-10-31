@@ -31,6 +31,7 @@
   },
   "remoteUser": "sail",
   "postCreateCommand": "bash .devcontainer/setup.sh",
+  "postStartCommand": "bash .devcontainer/start-services.sh",
   "forwardPorts": [80, 5173, 5432, 6379, 7700],
   "portsAttributes": {
     "80": {

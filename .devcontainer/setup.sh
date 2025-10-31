@@ -1,8 +1,10 @@
 #!/bin/bash
 set -e
 
-echo "🎵 Music Eternal - Apply Setup Starting..."
+echo "🎵 Music Eternal - Apply Initial Setup..."
 echo "=========================================="
+echo "⏱️  This runs ONCE on first container creation"
+echo ""
 
 # Copy .env if not exists
 if [ ! -f .env ]; then
@@ -16,18 +18,25 @@ composer install --no-interaction --prefer-dist --optimize-autoloader
 
 # Generate app key
 echo "🔑 Generating application key..."
-php artisan key:generate --ansi
+php artisan key:generate --ansi --force
 
 # Install NPM dependencies
 echo "📦 Installing NPM dependencies..."
 npm install
 
-# Run migrations
-echo "🗄️  Running database migrations..."
+# Wait for database to be ready
+echo "⏳ Waiting for PostgreSQL..."
+until php artisan db:show > /dev/null 2>&1; do
+    echo "   Database not ready, waiting..."
+    sleep 2
+done
+
+# Run migrations and seed
+echo "🗄️  Running database migrations and seeders..."
 php artisan migrate:fresh --force --seed
 
-# Build frontend assets
-echo "🎨 Building frontend assets..."
+# Build frontend assets (initial build)
+echo "🎨 Building frontend assets (initial)..."
 npm run build
 
 # Create storage link
@@ -39,20 +48,11 @@ echo "🧪 Running tests to verify setup..."
 php artisan test
 
 echo ""
-echo "✅ Setup Complete!"
+echo "✅ Initial Setup Complete!"
 echo "=========================================="
-echo "🚀 Application: http://localhost"
-echo "🎨 Vite Dev: http://localhost:5173"
-echo "🔍 Meilisearch: http://localhost:7700"
 echo ""
-echo "📧 Login Credentials:"
-echo "   Admin: admin@musiceternal.test / password"
-echo "   Teacher: teacher@musiceternal.test / password"
-echo "   Student: student@musiceternal.test / password"
+echo "🎯 Next: Services will auto-start when container opens"
+echo "   - Laravel dev server on http://localhost"
+echo "   - Vite HMR on http://localhost:5173"
 echo ""
-echo "📚 Next Steps:"
-echo "   1. Visit http://localhost and login"
-echo "   2. Check /challenges folder for assessment tasks"
-echo "   3. Run 'npm run dev' for hot-reload during development"
-echo ""
-echo "Good luck! 🎸"
+echo "Good luck with the challenge! 🎸"
