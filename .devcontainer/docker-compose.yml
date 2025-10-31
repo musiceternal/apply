@@ -22,9 +22,12 @@ services:
     networks:
       - sail
     depends_on:
-      - pgsql
-      - redis
-      - meilisearch
+      pgsql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      meilisearch:
+        condition: service_healthy
 
   pgsql:
     image: 'postgres:15'

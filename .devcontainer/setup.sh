@@ -26,10 +26,25 @@ npm install
 
 # Wait for database to be ready
 echo "⏳ Waiting for PostgreSQL..."
-until php artisan db:show > /dev/null 2>&1; do
-    echo "   Database not ready, waiting..."
+echo "   (This may take 10-30s on first boot)"
+MAX_RETRIES=60
+RETRY_COUNT=0
+until php artisan db:show 2>&1 | grep -q "pgsql"; do
+    RETRY_COUNT=$((RETRY_COUNT + 1))
+    if [ $RETRY_COUNT -ge $MAX_RETRIES ]; then
+        echo ""
+        echo "❌ PostgreSQL failed to become ready after ${MAX_RETRIES} attempts (2min timeout)"
+        echo "   Checking connection details:"
+        php artisan db:show || true
+        echo ""
+        echo "   Debug: Check if PostgreSQL container is running:"
+        echo "   docker ps | grep postgres"
+        exit 1
+    fi
+    echo "   Attempt ${RETRY_COUNT}/${MAX_RETRIES}: Database not ready, waiting 2s..."
     sleep 2
 done
+echo "✅ PostgreSQL is ready!"
 
 # Run migrations and seed
 echo "🗄️  Running database migrations and seeders..."
