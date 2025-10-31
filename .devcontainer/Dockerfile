@@ -49,11 +49,12 @@ RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.4
 RUN groupadd --force -g $WWWGROUP sail \
     && useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u $WWWUSER sail
 
-# Copy application
-COPY --chown=sail:sail . /var/www/html
+# Ensure directory exists
+RUN mkdir -p /var/www/html && chown -R sail:sail /var/www/html
 
 USER sail
 
 EXPOSE 80 5173
 
-CMD ["bash", "-c", "php artisan serve --host=0.0.0.0 --port=80"]
+# Default command (will be overridden by docker-compose)
+CMD ["bash"]
