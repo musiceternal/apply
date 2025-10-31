@@ -1,12 +1,6 @@
 services:
   laravel.test:
-    image: 'sail-8.4/app'
-    build:
-      context: ..
-      dockerfile: .devcontainer/Dockerfile
-      args:
-        WWWGROUP: '${WWWGROUP:-1000}'
-        WWWUSER: '${WWWUSER:-1000}'
+    image: 'laravelsail/php84-composer:latest'
     extra_hosts:
       - 'host.docker.internal:host-gateway'
     ports:
