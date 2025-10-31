@@ -1,6 +1,6 @@
 {
   "name": "Music Eternal - Apply (Hiring Assessment)",
-  "dockerComposeFile": "docker-compose.yml",
+  "dockerComposeFile": "../docker-compose.yml",
   "service": "laravel.test",
   "workspaceFolder": "/var/www/html",
   "customizations": {

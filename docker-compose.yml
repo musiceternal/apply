@@ -1,7 +1,7 @@
 services:
   laravel.test:
     build:
-      context: ../docker/8.4
+      context: ./docker/8.4
       dockerfile: Dockerfile
       args:
         WWWGROUP: '${WWWGROUP:-1000}'
@@ -18,7 +18,8 @@ services:
       XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
       IGNITION_LOCAL_SITES_PATH: '${PWD}'
     volumes:
-      - '..:/var/www/html'
+      - '.:/var/www/html'
+    command: sleep infinity
     networks:
       - sail
     depends_on:
@@ -40,7 +41,7 @@ services:
       POSTGRES_PASSWORD: '${DB_PASSWORD:-password}'
     volumes:
       - 'sail-pgsql:/var/lib/postgresql/data'
-      - '../docker/pgsql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
+      - './docker/pgsql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
     networks:
       - sail
     healthcheck:
