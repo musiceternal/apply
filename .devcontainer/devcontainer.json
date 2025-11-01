@@ -10,7 +10,11 @@
         "PKief.material-icon-theme",
         "usernamehw.errorlens",
         "laravel.vscode-laravel",
-        "Vue.volar"
+        "Vue.volar",
+        "ms-ossdata.vscode-pgsql",
+        "bradlc.vscode-tailwindcss",
+        "xdebug.php-debug",
+        "Davidsekar.redis-xplorer"
       ],
       "settings": {
         "php.debug.executablePath": "/usr/bin/php",
@@ -46,6 +50,18 @@
             "expiresOn": 0
           }
         ]
+      },
+      "redisXplorer.config": {
+        "profiles": [
+          {
+            "name": "redis",
+            "host": "redis",
+            "accessKey": "",
+            "filter": "*",
+            "port": "6379"
+          }
+        ],
+        "scanLimit": 200
       }
     }
   },
