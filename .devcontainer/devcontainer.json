@@ -69,12 +69,12 @@
   "postCreateCommand": "bash .devcontainer/setup.sh",
   "postStartCommand": "bash .devcontainer/start-services.sh",
   "forwardPorts": [
-    8000,
+    8474,
     5474
   ],
   "portsAttributes": {
-    "8000": {
-      "label": "Laravel App",
+    "8474": {
+      "label": "Laravel App (Apply)",
       "onAutoForward": "notify"
     },
     "5474": {
