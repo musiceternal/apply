@@ -9,7 +9,8 @@
         "bmewburn.vscode-intelephense-client",
         "PKief.material-icon-theme",
         "usernamehw.errorlens",
-        "laravel.vscode-laravel"
+        "laravel.vscode-laravel",
+        "Vue.volar"
       ],
       "settings": {
         "php.debug.executablePath": "/usr/bin/php",
@@ -25,34 +26,43 @@
         },
         "[typescript]": {
           "editor.defaultFormatter": "Vue.volar"
-        }
+        },
+        "pgsql.connections": [
+          {
+            "id": "1F8F998F-B877-4422-893F-7E46409C1D7C",
+            "groupId": "F3003063-B7F8-46B4-A659-0476D131B8F5",
+            "authenticationType": "SqlLogin",
+            "connectTimeout": 15,
+            "applicationName": "vscode-pgsql",
+            "clientEncoding": "utf8",
+            "sslmode": "prefer",
+            "savePassword": true,
+            "server": "pgsql",
+            "database": "apply",
+            "user": "sail",
+            "password": "",
+            "profileName": "pgsql, apply (sail)",
+            "sshPassword": "",
+            "expiresOn": 0
+          }
+        ]
       }
     }
   },
   "remoteUser": "sail",
   "postCreateCommand": "bash .devcontainer/setup.sh",
   "postStartCommand": "bash .devcontainer/start-services.sh",
-  "forwardPorts": [80, 5173],
-  "appPort": [5432, 6379, 7700],
+  "forwardPorts": [
+    8000,
+    5173
+  ],
   "portsAttributes": {
-    "80": {
+    "8000": {
       "label": "Laravel App",
       "onAutoForward": "notify"
     },
     "5173": {
       "label": "Vite Dev Server",
-      "onAutoForward": "silent"
-    },
-    "5432": {
-      "label": "PostgreSQL",
-      "onAutoForward": "silent"
-    },
-    "6379": {
-      "label": "Redis",
-      "onAutoForward": "silent"
-    },
-    "7700": {
-      "label": "Meilisearch",
       "onAutoForward": "silent"
     }
   }
