@@ -15,7 +15,7 @@ echo "🎸 Starting Laravel dev server (port 80)..."
 php artisan serve --host=0.0.0.0 --port=80 > /tmp/laravel-serve.log 2>&1 &
 
 # Start Vite dev server in background
-echo "🎨 Starting Vite dev server (port 5173)..."
+echo "🎨 Starting Vite dev server (port 5474)..."
 npm run dev > /tmp/vite-dev.log 2>&1 &
 
 # Wait a moment for services to start
@@ -25,7 +25,7 @@ echo ""
 echo "✅ Services Started!"
 echo "=========================================="
 echo "🌐 Laravel App: http://localhost"
-echo "⚡ Vite HMR: http://localhost:5173"
+echo "⚡ Vite HMR: http://localhost:5474"
 echo ""
 echo "📧 Login Credentials:"
 echo "   Admin: admin@musiceternal.test / password"

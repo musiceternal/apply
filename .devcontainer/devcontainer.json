@@ -70,15 +70,15 @@
   "postStartCommand": "bash .devcontainer/start-services.sh",
   "forwardPorts": [
     8000,
-    5173
+    5474
   ],
   "portsAttributes": {
     "8000": {
       "label": "Laravel App",
       "onAutoForward": "notify"
     },
-    "5173": {
-      "label": "Vite Dev Server",
+    "5474": {
+      "label": "Vite Dev Server (Apply)",
       "onAutoForward": "silent"
     }
   }
