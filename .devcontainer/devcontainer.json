@@ -32,7 +32,8 @@
   "remoteUser": "sail",
   "postCreateCommand": "bash .devcontainer/setup.sh",
   "postStartCommand": "bash .devcontainer/start-services.sh",
-  "forwardPorts": [80, 5173, 5432, 6379, 7700],
+  "forwardPorts": [80, 5173],
+  "appPort": [5432, 6379, 7700],
   "portsAttributes": {
     "80": {
       "label": "Laravel App",
@@ -43,13 +44,16 @@
       "onAutoForward": "silent"
     },
     "5432": {
-      "label": "PostgreSQL"
+      "label": "PostgreSQL",
+      "onAutoForward": "silent"
     },
     "6379": {
-      "label": "Redis"
+      "label": "Redis",
+      "onAutoForward": "silent"
     },
     "7700": {
-      "label": "Meilisearch"
+      "label": "Meilisearch",
+      "onAutoForward": "silent"
     }
   }
 }
