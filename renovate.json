@@ -1,0 +1,22 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Weekly dependency updates. Minor and patch land as one grouped PR; majors wait for a tick on the Dependency Dashboard issue; security fixes skip the schedule.",
+  "extends": ["config:recommended", "group:allNonMajor"],
+  "timezone": "Australia/Adelaide",
+  "schedule": ["before 9am on monday"],
+  "labels": ["dependencies"],
+  "prConcurrentLimit": 5,
+  "vulnerabilityAlerts": { "labels": ["dependencies", "security"], "schedule": ["at any time"] },
+  "packageRules": [
+    {
+      "description": "Majors need a human decision (e.g. the planned Laravel upgrade).",
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true
+    },
+    {
+      "description": "Node follows the prod server (Forge), bumped by hand with the root .nvmrc.",
+      "matchDatasources": ["node-version"],
+      "enabled": false
+    }
+  ]
+}
